@@ -5,7 +5,7 @@
 # 장애물이 반경내로 들어오는 경우 이를 알려준다.
 # 실제 물리적인 센서를 모델링하는 것은 아님.
 
-import PlanarVehicle as pv
+import pyPOA.PlanarVehicle as pv
 import numpy as np
 from math import sqrt
 
