@@ -22,3 +22,14 @@ def normalize(vector):
         return vector / np.linalg.norm(vector)
     else:
         raise ValueError(f'Invalid shape of the input vector : {np.shape(vector)}')
+
+
+class ExponentialRBF():
+    def __init__(self, epsilon=1):
+        self.epsilon = epsilon
+
+    def __call__(self,r):
+        return np.exp(-(self.epsilon*r)**2)
+    
+    def derivative(self, r):
+        return -2*self.epsilon**2*r*self.__call__(r)

@@ -11,7 +11,7 @@ class DetourMaker():
         self.__Reference = RefCurveObj
         self.__sensed_obs = []
         self.num_sample_points = num_sample_points
-        self.phi = off.ExponentialRBF(epsilon=self.num_sample_points)                                   # RBF 함수 설정 
+        self.phi = POA.utilities.ExponentialRBF(epsilon=self.num_sample_points)                                   # RBF 함수 설정 
         self.spt = off.SamplePoints(points=np.linspace(0,1,self.num_sample_points))                     # 샘플포인트 객체 생성     
         self.dlbc = off.DLBComputer_multipleObstacle(
             Reference=self.__Reference, SamplePointsObj=self.spt, step_length=0.05)

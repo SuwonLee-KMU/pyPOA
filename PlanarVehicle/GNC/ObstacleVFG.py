@@ -5,7 +5,6 @@
 from math import sqrt
 import pyPOA.PlanarVehicle as pv
 
-
 class ObstacleRepulsiveVFG():
     def __init__(self, States):
         self.obs_list = []
@@ -30,7 +29,7 @@ class ObstacleRepulsiveVFG():
     
     def compute_vel_cmd(self):
         x, y = self.States.x, self.States.y
-        
+
     @property 
     def States(self):
         return self.__States
