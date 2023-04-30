@@ -3,7 +3,7 @@
 # Code: 
 
 import numpy as np
-from POA.utilities import map_listed
+from pyPOA.POA.utilities import map_listed
 
 class MSPNFrame():
     def __init__(self, SpacePHCurveObj):

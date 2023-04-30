@@ -1,7 +1,7 @@
 # Generated on: 2023-04-28 
 # Author: Suwon Lee from Kookmin Univ.
 
-import PlanarVehicle as pv
+import pyPOA.PlanarVehicle as pv
 import numpy as np
 from math import atan
 

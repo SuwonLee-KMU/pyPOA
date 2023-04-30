@@ -2,7 +2,7 @@
 # Date: April 13, 2023 3:21:36 PM GMT+9
 # Code: Offset curve 클래스를 개발한다.
 
-from POA.utilities import map_listed
+from pyPOA.POA.utilities import map_listed
 import numpy as np
 
 class DLBComputer():

@@ -4,8 +4,8 @@
 
 import numpy as np
 import sympy
-from POA.Polynomials import BinomialPolynomial
-from POA.utilities import map_listed
+from pyPOA.POA.Polynomials import BinomialPolynomial
+from pyPOA.POA.utilities import map_listed
 
 class MSPN(): # Minimum Surface with Pythagorean Normal
     def __init__(self, preimage1, preimage2, preimage3, r0 = [0,0,0]):

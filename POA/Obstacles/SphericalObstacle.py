@@ -2,7 +2,7 @@
 # Author : Suwon Lee from Kookmin University
 
 import numpy as np
-from .CircularObstacle import CircularObstacle
+from pyPOA.POA.Obstacles.CircularObstacle import CircularObstacle
 
 class SphericalObstacle(CircularObstacle):
     """ 

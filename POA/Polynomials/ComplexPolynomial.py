@@ -4,7 +4,7 @@
 
 import numpy as np
 import sympy
-from POA.utilities import map_listed
+from pyPOA.POA.utilities import map_listed
 
 class ComplexPolynomial():
     """

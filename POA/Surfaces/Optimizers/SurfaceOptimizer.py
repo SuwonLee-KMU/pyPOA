@@ -4,9 +4,9 @@
 
 import numpy as np
 from scipy import optimize
-from POA.Polynomials import PreimageComplexPolynomial
-from POA.Surfaces import MSPN
-from POA.Curves import SpacePHCurve, FrenetFrame
+from pyPOA.POA.Polynomials import PreimageComplexPolynomial
+from pyPOA.POA.Surfaces import MSPN
+from pyPOA.POA.Curves import SpacePHCurve, FrenetFrame
 
 class SurfaceOptimizer():
     def __init__(self, wc, cc, crvc = None, w = [0.4, 0.3, 0.3]):

@@ -3,7 +3,7 @@
 # Vehicles class
 
 import numpy as np
-import PlanarVehicle as pv
+import pyPOA.PlanarVehicle as pv
 from math import sin, cos
 
 class Vehicle():

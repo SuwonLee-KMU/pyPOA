@@ -2,7 +2,7 @@
 # Date: April 18, 2023 11:48:26 PM GMT+9
 # Code: 
 
-from POA.Curves import Dubins as db
+from pyPOA.POA.Curves import Dubins as db
 import numpy as np
 from scipy import io
 

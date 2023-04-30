@@ -2,8 +2,8 @@
 # Date: April 29, 2023 1:54:24 PM GMT+9
 # Code: POA 모듈을 사용해서 우회로(Detour)를 생성하는 클래스.
 
-import POA
-import POA.OffsetCurves as off
+import pyPOA.POA
+import pyPOA.POA.OffsetCurves as off
 import numpy as np
 
 class DetourMaker():

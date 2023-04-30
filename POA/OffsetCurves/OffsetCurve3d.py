@@ -2,9 +2,9 @@
 # Author : Suwon Lee from Kookmin University
 
 import numpy as np
-from POA.OffsetCurves import OffsetCurve
-from POA.OffsetCurves import SamplePoints
-from POA.utilities import map_listed
+from pyPOA.POA.OffsetCurves import OffsetCurve
+from pyPOA.POA.OffsetCurves import SamplePoints
+from pyPOA.POA.utilities import map_listed
 
 class SamplePoints3d(SamplePoints):
     verbose = True

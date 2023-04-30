@@ -2,7 +2,7 @@
 # Date: April 18, 2023 7:17:29 PM GMT+9
 
 import numpy as np
-from .Bernstein import *
+from pyPOA.POA.Curves.Bernstein import *
 
 class SpaceBezierCurve():
     def __init__(self, coef_x, coef_y, coef_z):

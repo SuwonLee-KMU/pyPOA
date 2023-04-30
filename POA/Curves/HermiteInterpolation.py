@@ -3,8 +3,8 @@
 # Code: 
 
 import numpy as np
-from POA.utilities import normalize
-from POA.Curves import Bernstein
+from pyPOA.POA.utilities import normalize
+from pyPOA.POA.Curves import Bernstein
 
 class HermiteInterpolation():
     # PH Quintic을 사용해서 평면상의 Hermite Interpolation을 수행하는 클래스
