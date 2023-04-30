@@ -26,6 +26,10 @@ class DetourMaker():
         self.spt.DLB = self.dlbc.determine_DLBs(self.__sensed_obs)                          # 장애물과 샘플포인트 DLB 계산
         self.oc.SamplePoints = self.spt
 
+    def set_dlbc_step_length(self, step_length):
+        self.dlbc.step_length = step_length
+        self.update_OffsetCurve()
+
     @property 
     def sensed_obs(self):
         return self.__sensed_obs

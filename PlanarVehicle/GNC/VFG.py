@@ -27,7 +27,9 @@ class VectorFieldGuidance():
         tan, nor = self.basis_vectors_at(tau_tgt)
         vec_conv = (pos_tgt - np.array([x,y])) / np.linalg.norm(pos_tgt - np.array([x,y]))
         vec_trav = tan
-        vel_vector = np.reshape(0.3*vec_conv + 0.6*vec_trav, newshape=[2])
+        k_conv, k_trav = self.dist_based_coef(distance)
+        # vel_vector = np.reshape(0.3*vec_conv + 0.6*vec_trav, newshape=[2])
+        vel_vector = np.reshape(k_conv*vec_conv + k_trav*vec_trav, newshape=[2])
         return vel_vector/np.linalg.norm(vel_vector)
 
     def compute_latax_cmd(self):
