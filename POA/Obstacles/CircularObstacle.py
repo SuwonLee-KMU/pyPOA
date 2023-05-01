@@ -8,12 +8,8 @@ class CircularObstacle():
     2차원 평면상에 존재하는 원형 장애물 클래스.
     중심의 위치와 반지름을 지정할 수 있다.
     """
-    def __init__(self, center=np.zeros([2,1]), radius=1, **kwargs):
-        if "dimension" in kwargs:
-            newshape = [kwargs["dimension"],1]
-        else:
-            newshape = [2,1]
-        self.center = np.reshape(center, newshape=newshape)
+    def __init__(self, center, radius=1, **kwargs):
+        self.center = center
         self.radius = radius
 
     def __str__(self):
@@ -37,10 +33,10 @@ class CircularObstacle():
             return False
         
     def add_patch(self, fig):
-        x0 = self.center[0,0] - self.radius
-        y0 = self.center[1,0] - self.radius
-        x1 = self.center[0,0] + self.radius
-        y1 = self.center[1,0] + self.radius
+        x0 = self.center[0] - self.radius
+        y0 = self.center[1] - self.radius
+        x1 = self.center[0] + self.radius
+        y1 = self.center[1] + self.radius
         fig.add_shape(type="circle",
             xref="x", yref="y",
             fillcolor="PaleTurquoise",

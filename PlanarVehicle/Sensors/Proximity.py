@@ -33,7 +33,7 @@ class Proximity():
         현재 상태변수에 대한 sensing_list 속성값을 업데이트한다.
         """
         px, py = self.__States.x, self.__States.y
-        is_sensed = []
+        is_sensed = []  # 장애물 리스트에 대응하는 탐지여부 리스트.
         for id, obs in enumerate(self.obs_list):
             cx, cy = obs.center
             center_dist = sqrt((px-cx)**2 + (py-cy)**2)
@@ -41,7 +41,8 @@ class Proximity():
                 is_sensed.append(True)
             else:
                 is_sensed.append(False)
-        if self.__sensing_list == is_sensed:
+        # 현재 인스턴스 속성값으로 저장되어있는 탐지여부값과 새로 검사한 탐지여부값을 비교해서 변경점이 있는지 여부를 파악함.
+        if self.__sensing_list == is_sensed: 
             self.is_updated = False
         else:
             self.is_updated = True

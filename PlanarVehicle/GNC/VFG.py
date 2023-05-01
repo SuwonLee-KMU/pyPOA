@@ -3,7 +3,7 @@
 
 import pyPOA.PlanarVehicle as pv
 import numpy as np
-from math import atan
+from math import atan, sqrt
 
 class VectorFieldGuidance():
     def __init__(self, CurveObject, convergence_factor, gain, States:pv.States=pv.States()):
@@ -30,7 +30,12 @@ class VectorFieldGuidance():
         k_conv, k_trav = self.dist_based_coef(distance)
         # vel_vector = np.reshape(0.3*vec_conv + 0.6*vec_trav, newshape=[2])
         vel_vector = np.reshape(k_conv*vec_conv + k_trav*vec_trav, newshape=[2])
-        return vel_vector/np.linalg.norm(vel_vector)
+        normalized_vel_vector = [v/sqrt(vel_vector[0]**2+vel_vector[1]**2) 
+                                 if (vel_vector[0]!=0 and vel_vector[1]!=0) else 0 
+                                 for v in vel_vector
+                                 ]
+        # return vel_vector/np.linalg.norm(vel_vector)
+        return normalized_vel_vector
 
     def compute_latax_cmd(self):
         vel = self.__States.get_velocity()
