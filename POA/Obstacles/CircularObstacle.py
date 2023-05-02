@@ -26,7 +26,7 @@ class CircularObstacle():
         else:
             newshape = [2,1]
         position = np.reshape(position, newshape=newshape)
-        distance = np.linalg.norm(self.center - position)
+        distance = np.linalg.norm(np.reshape(self.center,newshape=[2,1]) - position)
         if distance <= self.radius:
             return True
         else:

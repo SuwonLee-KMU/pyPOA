@@ -49,7 +49,8 @@ class ObstacleRepulsiveVFG():
         for obs, dfs, inside in zip(self.obs_list, self.dist_from_surface, self.is_inside):
             if inside:
                 cx, cy = obs.center
-                force = exp(-abs(0.01*dfs))*self.gain
+                # force = exp(-abs(0.01*dfs))*self.gain
+                force = 0.001/abs(dfs*self.gain)
                 dir_vec = [val / sqrt((cx-x)**2+(cy-y)**2) for val in [x-cx,y-cy]]
             else:
                 force = 0
