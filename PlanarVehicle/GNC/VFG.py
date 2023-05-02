@@ -15,6 +15,7 @@ class VectorFieldGuidance():
         self.convergence_factor = convergence_factor
         self.gain = gain
         self.__States = States
+        self.__tau = 0
         self.vel_cmd = None
         self.latax_cmd = None
         
@@ -35,7 +36,7 @@ class VectorFieldGuidance():
                                  for v in vel_vector
                                  ]
         # return vel_vector/np.linalg.norm(vel_vector)
-        return normalized_vel_vector
+        return normalized_vel_vector, tau_tgt
 
     def compute_latax_cmd(self):
         vel = self.__States.get_velocity()
@@ -49,7 +50,7 @@ class VectorFieldGuidance():
     @States.setter 
     def States(self, States:pv.States):
         self.__States = States
-        self.vel_cmd = self.compute_vel_cmd()
+        self.vel_cmd, self.__tau = self.compute_vel_cmd()
         self.latax_cmd = self.compute_latax_cmd()
 
     def basis_vectors_at(self, tau):
@@ -65,7 +66,10 @@ class VectorFieldGuidance():
         return coef
 
     def nearest_point_from(self, x, y):
-        tau = np.linspace(0,1,101)
+        tau_range = []
+        tau_range.append(max(0, self.__tau-0.05))
+        tau_range.append(min(1, self.__tau+0.05))
+        tau = np.linspace(tau_range[0],tau_range[1],41)
         pos = np.transpose(self.CurveObject(tau))
         norms = [np.linalg.norm(np.reshape(p,newshape=[2])-np.array([x,y])) for p in pos]
         minval = min(norms)
