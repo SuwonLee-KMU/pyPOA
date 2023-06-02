@@ -90,3 +90,8 @@ class PlanarPHCurve():
         fun = self.get_second_derivative_handle(form="real")
         return fun(tau)
     
+
+class RefCurve(PlanarPHCurve):
+    def __call__(self, tau, **kwargs):
+        return super().__call__(tau, form="real")
+    

@@ -165,3 +165,5 @@ class HermiteInterpolation():
         x_3prime_fun = lambda tau: 2*(u_prime_fun(tau)**2 + u_fun(tau)*u_2prime_fun(tau)-v_prime_fun(tau)**2-v_fun(tau)*v_2prime_fun(tau))
         y_3prime_fun = lambda tau: 2*(u_2prime_fun(tau)*v_fun(tau) + 2*u_prime_fun(tau)*v_prime_fun(tau) + u_fun(tau)*v_2prime_fun(tau))
         return x_3prime_fun(tau), y_3prime_fun(tau)
+
+

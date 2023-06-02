@@ -4,3 +4,4 @@
 
 from .CircularObstacle import *
 from .SphericalObstacle import SphericalObstacle
+from .RandomObstacle import *
