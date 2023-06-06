@@ -16,13 +16,16 @@ def sample_random_scalar(lb=0.3, ub=0.7):
     random_tau = np.random.random(size=[])*(upper_bound - lower_bound) + lower_bound
     return random_tau
 
-def sample_random_pos_near(curveObj, sigma=1):
+def sample_random_pos_near(curveObj, sigma=1, limit=1):
     """
     `curveObj` 곡선 근처의 무작위 점을 샘플링하는 함수.
     `sigma`값을 전달하여 곡선에서 얼마나 떨어진 점을 샘플링할지 결정할 수 있다.
     """
     rnd_tau = sample_random_scalar(lb=0.3, ub=0.7)
-    random_vec = list(np.random.randn(2)*sigma)
+    random_vec = np.random.randn(2)*sigma
+    vec_size = np.linalg.norm(random_vec)
+    new_size = min(vec_size, limit)
+    random_vec = list(random_vec / vec_size * new_size)
     sample_pos = [p + r for p, r in zip(curveObj(rnd_tau), random_vec)]
     return sample_pos
 
@@ -36,7 +39,7 @@ def sample_random_obstacle_near(curveObj, num_obs=1, sigma=1, rbound=[0.05,0.3])
     cnt = 0
     while len(cobs) < num_obs:
         rnd_radius = sample_random_scalar(lb=rbound[0], ub=rbound[1])
-        sample_pos = sample_random_pos_near(curveObj, sigma=sigma)
+        sample_pos = sample_random_pos_near(curveObj, sigma=sigma, limit=rnd_radius*0.5)
         cobs.append(obs.CircularObstacle(center=sample_pos, radius=rnd_radius))
         # 다수 장애물 간 겹침이 없도록 하는 기능 작동하지 않는 버그 있음. 추후 검토 요망 #
         mcc = obs.MultipleCollisionChecker(cobs, margin=0)
