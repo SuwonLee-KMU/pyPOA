@@ -6,34 +6,41 @@ import pyPOA.POA as POA
 import pyPOA.POA.OffsetCurves as off
 import numpy as np
 
-class DetourMaker():
-    def __init__(self, RefCurveObj:POA.Curves.PlanarPHCurve, num_sample_points=30):
+
+class DetourMaker:
+    def __init__(self, RefCurveObj: POA.Curves.PlanarPHCurve, num_sample_points=30):
         self.__Reference = RefCurveObj
         self.__sensed_obs = []
         self.num_sample_points = num_sample_points
-        self.phi = POA.utilities.ExponentialRBF(epsilon=self.num_sample_points)                                   # RBF 함수 설정 
-        self.spt = off.SamplePoints(points=np.linspace(0,1,self.num_sample_points))                     # 샘플포인트 객체 생성     
+        self.phi = POA.ExponentialRBF(epsilon=self.num_sample_points)  # RBF 함수 설정
+        self.spt = off.SamplePoints(
+            points=np.linspace(0, 1, self.num_sample_points)
+        )  # 샘플포인트 객체 생성
         self.dlbc = off.DLBComputer_multipleObstacle(
-            Reference=self.__Reference, SamplePointsObj=self.spt, step_length=0.05)
-        self.spt.DLB = self.dlbc.determine_DLBs(self.__sensed_obs)                                      # 장애물과 샘플포인트 DLB 계산   
-        self.oc = off.OffsetCurve(Reference=self.__Reference, SamplePoints=self.spt, RBF=self.phi)      # 오프셋곡선 객체 생성
+            Reference=self.__Reference, SamplePointsObj=self.spt, step_length=0.05
+        )
+        self.spt.DLB = self.dlbc.determine_DLBs(self.__sensed_obs)  # 장애물과 샘플포인트 DLB 계산
+        self.oc = off.OffsetCurve(
+            Reference=self.__Reference, SamplePoints=self.spt, RBF=self.phi
+        )  # 오프셋곡선 객체 생성
         self.update_OffsetCurve()
 
     def __call__(self):
         pass
 
     def update_OffsetCurve(self):
-        self.spt.DLB = self.dlbc.determine_DLBs(self.__sensed_obs)                          # 장애물과 샘플포인트 DLB 계산
+        self.spt.DLB = self.dlbc.determine_DLBs(self.__sensed_obs)  # 장애물과 샘플포인트 DLB 계산
         self.oc.SamplePoints = self.spt
 
     def set_dlbc_step_length(self, step_length):
         self.dlbc.step_length = step_length
         self.update_OffsetCurve()
 
-    @property 
+    @property
     def sensed_obs(self):
         return self.__sensed_obs
-    @sensed_obs.setter 
-    def sensed_obs(self, sensed_obs:list):
+
+    @sensed_obs.setter
+    def sensed_obs(self, sensed_obs: list):
         self.__sensed_obs = sensed_obs
         self.update_OffsetCurve()
